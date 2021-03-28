@@ -106,6 +106,21 @@ data.c1 <- cbind(data, cluster.member1)
 cluster.member2 <- data.frame(cluster = res.hc$cluster)
 data.c2 <- cbind(data, cluster.member2)
 ```
+### Save Clustering
+
+```{r}
+clusterSales <- cbind(data, Cluster = km.res$cluster)
+head(clusterSales)
+group <- cutree(res.hc, k=2)
+HierarchySales <- cbind(data, Group = as.factor(group))
+head(HierarchySales)
+HierarchySales %>%
+  group_by(Group) %>%
+  summarise_all("mean")
+```
+
+Menyimpan cluster sales dan hierarchy
+
 
 # Linear discriminant analysis hasil K-Means
 
@@ -123,7 +138,7 @@ training.samples <- data.c1$cluster %>%
 train.data <- data.c1[training.samples, ]
 test.data <- data.c1[-training.samples, ]
 ```
-
+memisahkan data ke data uji (test.data)
 ### Normalize data
 
 ```{r}
@@ -133,13 +148,12 @@ preproc.param <- train.data %>%
 # Transform the data using the estimated parameters
 train.transformed <- preproc.param %>% predict(train.data)
 test.transformed <- preproc.param %>% predict(test.data)
-
 ```
 
 ### Compute LDA
 
 ```{r}
-model <- lda(cluster~., data = train.transformed)
+model <- lda(Cluster~., data = clusterSales)
 model
 ```
 
@@ -185,17 +199,18 @@ test.transformed <- preproc.param %>% predict(test.data)
 
 ```
 
+
 ### Compute LDA
 
 ```{r}
-model <- lda(cluster~., data = train.transformed)
-model
+
+model1 <- lda(Group~., data = HierarchySales)
 ```
 
 ## 2. Make predictions
 
 ```{r}
-predictions <- model %>% predict(test.data)
+predictions <- model1 %>% predict(test.data)
 names(predictions)
 ```
 
@@ -203,26 +218,4 @@ names(predictions)
 
 ```{r}
 mean(predictions$class==test.transformed$cluster)
-```
-
-#simpan kluster
-```{r}
-clusterSales <- cbind(data, Cluster = km.res$cluster)
-head(clusterSales)
-group <- cutree(res.hc, k=2)
-HierarchySales <- cbind(data, Group = as.factor(group))
-head(HierarchySales)
-HierarchySales %>%
-  group_by(Group) %>%
-  summarise_all("mean")
-```
-
-##iv. Buatkan analisis diskriminan untuk memperoleh:
-#a. Prosentase ketepatan klasifikasi 50 slaesman ke hasil iii.a. maupun ke hasil iii.b.
-
-
-#b. fungsi diskriminan berdasarkan hasil iii.a. maupun ke hasil iii.b.
-```{r}
-lda(Cluster~., data = clusterSales)
-lda(Group~., data = HierarchySales)
 ```
