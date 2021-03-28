@@ -204,3 +204,25 @@ names(predictions)
 ```{r}
 mean(predictions$class==test.transformed$cluster)
 ```
+
+#simpan kluster
+```{r}
+clusterSales <- cbind(data, Cluster = km.res$cluster)
+head(clusterSales)
+group <- cutree(res.hc, k=2)
+HierarchySales <- cbind(data, Group = as.factor(group))
+head(HierarchySales)
+HierarchySales %>%
+  group_by(Group) %>%
+  summarise_all("mean")
+```
+
+##iv. Buatkan analisis diskriminan untuk memperoleh:
+#a. Prosentase ketepatan klasifikasi 50 slaesman ke hasil iii.a. maupun ke hasil iii.b.
+
+
+#b. fungsi diskriminan berdasarkan hasil iii.a. maupun ke hasil iii.b.
+```{r}
+lda(Cluster~., data = clusterSales)
+lda(Group~., data = HierarchySales)
+```
