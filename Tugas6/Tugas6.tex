@@ -1,0 +1,684 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Salespeople-data},
+  pdfauthor={Kenneth Manuel},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Salespeople-data}
+\author{Kenneth Manuel}
+\date{3/27/2021}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.0.6     v dplyr   1.0.4
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"readxl"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{"NbClust"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{"factoextra"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'factoextra' was built under R version 4.0.4
+\end{verbatim}
+
+\begin{verbatim}
+## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"MASS"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'MASS'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"caret"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'caret' was built under R version 4.0.4
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: lattice
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'caret'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     lift
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{\textquotesingle{}Salespeople{-}data.xlsx\textquotesingle{}}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 7
+##   Salegrow saleproft Newsale createst Mechtest absttest mathtest
+##      <dbl>     <dbl>   <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
+## 1     93        96      97.8        9       12        9       20
+## 2     88.8      91.8    96.8        7       10       10       15
+## 3     95       100.     99          8       12        9       26
+## 4    101.      104.    107.        13       14       12       29
+## 5    102       108.    103         10       15       12       32
+## 6     95.8      97.5    99.3       10       14       11       21
+\end{verbatim}
+
+\hypertarget{menentukan-keputusan-berapa-kluster-yang-akan-digunakan}{%
+\section{Menentukan keputusan berapa kluster yang akan
+digunakan}\label{menentukan-keputusan-berapa-kluster-yang-akan-digunakan}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_nbclust}\NormalTok{(data, kmeans, }\AttributeTok{method =} \StringTok{"wss"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{2}\NormalTok{ , }\AttributeTok{linetype =} \DecValTok{2}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{subtitle =} \StringTok{"Elbow method"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tugas6_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_nbclust}\NormalTok{(data, kmeans, }\AttributeTok{method =} \StringTok{"silhouette"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{subtitle =} \StringTok{"Silhouette method"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tugas6_files/figure-latex/unnamed-chunk-3-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_nbclust}\NormalTok{(data, kmeans, }\AttributeTok{nstart =} \DecValTok{25}\NormalTok{,  }\AttributeTok{method =} \StringTok{"gap\_stat"}\NormalTok{, }\AttributeTok{nboot =} \DecValTok{50}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{subtitle =} \StringTok{"Gap statistic method"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tugas6_files/figure-latex/unnamed-chunk-3-3.pdf}
+
+Terlihat bahwa metode elbow dan metode silhouette menyarankan untuk
+menggunakan 2 cluster sedangkan gap statistics menyarankan untuk
+menggunakan 4 cluster.
+
+Karena dua metode yaitu silhouette dan elbow menyarankan untuk
+menggunakan 2 cluster maka clustering akan dibagi menjadi \textbf{2
+cluster}
+
+\hypertarget{k-means-clustering}{%
+\section{K-means clustering}\label{k-means-clustering}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{km.res }\OtherTok{\textless{}{-}} \FunctionTok{eclust}\NormalTok{(data, }\StringTok{"kmeans"}\NormalTok{, }\AttributeTok{k =} \DecValTok{2}\NormalTok{,}
+                 \AttributeTok{nstart =} \DecValTok{25}\NormalTok{, }\AttributeTok{graph =} \ConstantTok{FALSE}\NormalTok{)}
+\CommentTok{\# k{-}means group number of each observation}
+\NormalTok{km.res}\SpecialCharTok{$}\NormalTok{cluster}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 2 2 2 1 1 2 2 1 1 1 1 1 1 1 1 2 1 1 2 1 2 1 2 1 1 2 1 1 2 1 1 2 2 2 1 1 2 2
+## [39] 1 1 1 2 1 2 2 1 2 2 1 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_cluster}\NormalTok{(km.res,  }\AttributeTok{ellipse.type =} \StringTok{"norm"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tugas6_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#fviz\_silhouette(km.res)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{hierachical-clustering-dengan-jarak-euclidean-dan-metode-single-linkage}{%
+\section{Hierachical clustering dengan jarak euclidean dan metode single
+linkage}\label{hierachical-clustering-dengan-jarak-euclidean-dan-metode-single-linkage}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# dissimilarity matrix}
+\NormalTok{res.dist }\OtherTok{\textless{}{-}} \FunctionTok{dist}\NormalTok{(data, }\AttributeTok{method =} \StringTok{\textquotesingle{}euclidean\textquotesingle{}}\NormalTok{)}
+\NormalTok{res.hc }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(}\AttributeTok{d =}\NormalTok{ res.dist, }\AttributeTok{method =} \StringTok{\textquotesingle{}single\textquotesingle{}}\NormalTok{)}
+\NormalTok{hc.cluster }\OtherTok{\textless{}{-}} \FunctionTok{cutree}\NormalTok{(res.hc, }\AttributeTok{k =} \DecValTok{2}\NormalTok{)}
+\NormalTok{hc.cluster}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [39] 1 1 1 1 1 1 1 1 1 1 1 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_dend}\NormalTok{(res.hc, }\AttributeTok{rect =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{show\_labels =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{color\_labels\_by\_k =} \ConstantTok{TRUE}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tugas6_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#fviz\_silhouette(res.hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{comparing-hierachical-clustering-and-k-means-clustering}{%
+\section{Comparing hierachical clustering and K-means
+clustering}\label{comparing-hierachical-clustering-and-k-means-clustering}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{km.res}\SpecialCharTok{$}\NormalTok{cluster}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 2 2 2 1 1 2 2 1 1 1 1 1 1 1 1 2 1 1 2 1 2 1 2 1 1 2 1 1 2 1 1 2 2 2 1 1 2 2
+## [39] 1 1 1 2 1 2 2 1 2 2 1 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc.cluster}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [39] 1 1 1 1 1 1 1 1 1 1 1 1
+\end{verbatim}
+
+Attaching cluster result label to data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cluster.member1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{cluster =}\NormalTok{ km.res}\SpecialCharTok{$}\NormalTok{cluster)}
+\NormalTok{data.c1 }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(data, cluster.member1)}
+
+\NormalTok{cluster.member2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{cluster =}\NormalTok{ hc.cluster)}
+\NormalTok{data.c2 }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(data, cluster.member2)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{linear-discriminant-analysis-hasil-k-means}{%
+\section{Linear discriminant analysis hasil
+K-Means}\label{linear-discriminant-analysis-hasil-k-means}}
+
+Dengan mengasumsi bahwa masing - masing variabel berdistribusi normal
+univariate.
+
+\hypertarget{data-preparation}{%
+\subsection{1. Data preparation}\label{data-preparation}}
+
+\hypertarget{split-data-to-training-and-test-set}{%
+\subsubsection{Split data to training and test
+set}\label{split-data-to-training-and-test-set}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Split the data into training (80\%) and test set (20\%)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{training.samples }\OtherTok{\textless{}{-}}\NormalTok{ data.c1}\SpecialCharTok{$}\NormalTok{cluster }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{createDataPartition}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{list =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{train.data }\OtherTok{\textless{}{-}}\NormalTok{ data.c1[training.samples, ]}
+\NormalTok{test.data }\OtherTok{\textless{}{-}}\NormalTok{ data.c1[}\SpecialCharTok{{-}}\NormalTok{training.samples, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{normalize-data}{%
+\subsubsection{Normalize data}\label{normalize-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estimate preprocessing parameters}
+\NormalTok{preproc.param }\OtherTok{\textless{}{-}}\NormalTok{ train.data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{preProcess}\NormalTok{(}\AttributeTok{method =} \FunctionTok{c}\NormalTok{(}\StringTok{"center"}\NormalTok{, }\StringTok{"scale"}\NormalTok{))}
+\CommentTok{\# Transform the data using the estimated parameters}
+\NormalTok{train.transformed }\OtherTok{\textless{}{-}}\NormalTok{ preproc.param }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{predict}\NormalTok{(train.data)}
+\NormalTok{test.transformed }\OtherTok{\textless{}{-}}\NormalTok{ preproc.param }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{predict}\NormalTok{(test.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{compute-lda}{%
+\subsubsection{Compute LDA}\label{compute-lda}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{lda}\NormalTok{(cluster}\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data =}\NormalTok{ train.transformed)}
+\NormalTok{model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+## lda(cluster ~ ., data = train.transformed)
+## 
+## Prior probabilities of groups:
+## -0.646418705528501   1.50831031289984 
+##                0.7                0.3 
+## 
+## Group means:
+##                      Salegrow  saleproft    Newsale   createst   Mechtest
+## -0.646418705528501  0.5430821  0.5055945  0.4661681  0.2414054  0.2591322
+## 1.50831031289984   -1.2671915 -1.1797205 -1.0877255 -0.5632794 -0.6046417
+##                      absttest   mathtest
+## -0.646418705528501  0.3392754  0.5026441
+## 1.50831031289984   -0.7916426 -1.1728362
+## 
+## Coefficients of linear discriminants:
+##                   LD1
+## Salegrow  -2.08620271
+## saleproft -1.33833281
+## Newsale   -0.26834511
+## createst  -0.06032613
+## Mechtest   0.88695151
+## absttest  -0.08842310
+## mathtest   1.25657273
+\end{verbatim}
+
+\hypertarget{make-predictions}{%
+\subsection{2. Make predictions}\label{make-predictions}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions }\OtherTok{\textless{}{-}}\NormalTok{ model }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{predict}\NormalTok{(test.data)}
+\FunctionTok{names}\NormalTok{(predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "class"     "posterior" "x"
+\end{verbatim}
+
+\hypertarget{model-accuracy}{%
+\subsection{3. Model accuracy}\label{model-accuracy}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(predictions}\SpecialCharTok{$}\NormalTok{class}\SpecialCharTok{==}\NormalTok{test.transformed}\SpecialCharTok{$}\NormalTok{cluster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1
+\end{verbatim}
+
+\hypertarget{linear-discriminant-analysis-hasil-hierachical-clustering}{%
+\section{Linear discriminant analysis hasil Hierachical
+clustering}\label{linear-discriminant-analysis-hasil-hierachical-clustering}}
+
+Dengan mengasumsi bahwa masing - masing variabel berdistribusi normal
+univariate.
+
+\hypertarget{data-preparation-1}{%
+\subsection{1. Data preparation}\label{data-preparation-1}}
+
+\hypertarget{split-data-to-training-and-test-set-1}{%
+\subsubsection{Split data to training and test
+set}\label{split-data-to-training-and-test-set-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Split the data into training (80\%) and test set (20\%)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{training.samples }\OtherTok{\textless{}{-}}\NormalTok{ data.c2}\SpecialCharTok{$}\NormalTok{cluster }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{createDataPartition}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{list =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{train.data }\OtherTok{\textless{}{-}}\NormalTok{ data.c2[training.samples, ]}
+\NormalTok{test.data }\OtherTok{\textless{}{-}}\NormalTok{ data.c2[}\SpecialCharTok{{-}}\NormalTok{training.samples, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{normalize-data-1}{%
+\subsubsection{Normalize data}\label{normalize-data-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estimate preprocessing parameters}
+\NormalTok{preproc.param }\OtherTok{\textless{}{-}}\NormalTok{ train.data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{preProcess}\NormalTok{(}\AttributeTok{method =} \FunctionTok{c}\NormalTok{(}\StringTok{"center"}\NormalTok{, }\StringTok{"scale"}\NormalTok{))}
+\CommentTok{\# Transform the data using the estimated parameters}
+\NormalTok{train.transformed }\OtherTok{\textless{}{-}}\NormalTok{ preproc.param }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{predict}\NormalTok{(train.data)}
+\NormalTok{test.transformed }\OtherTok{\textless{}{-}}\NormalTok{ preproc.param }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{predict}\NormalTok{(test.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{compute-lda-1}{%
+\subsubsection{Compute LDA}\label{compute-lda-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{lda}\NormalTok{(cluster}\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data =}\NormalTok{ train.transformed)}
+\NormalTok{model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+## lda(cluster ~ ., data = train.transformed)
+## 
+## Prior probabilities of groups:
+## -0.158113883008418   6.16644143732834 
+##              0.975              0.025 
+## 
+## Group means:
+##                      Salegrow   saleproft     Newsale    createst    Mechtest
+## -0.158113883008418 -0.0421968 -0.03730924 -0.06884791 -0.04332918 -0.04315877
+## 6.16644143732834    1.6456753  1.45506023  2.68506851  1.68983814  1.68319184
+##                       absttest    mathtest
+## -0.158113883008418 -0.05332308 -0.04969867
+## 6.16644143732834    2.07959996  1.93824821
+## 
+## Coefficients of linear discriminants:
+##                  LD1
+## Salegrow  -2.3012237
+## saleproft -3.1539512
+## Newsale   -1.0298809
+## createst   1.5560344
+## Mechtest   1.3197588
+## absttest   0.9053936
+## mathtest   5.0205975
+\end{verbatim}
+
+\hypertarget{make-predictions-1}{%
+\subsection{2. Make predictions}\label{make-predictions-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions }\OtherTok{\textless{}{-}}\NormalTok{ model }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{predict}\NormalTok{(test.data)}
+\FunctionTok{names}\NormalTok{(predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "class"     "posterior" "x"
+\end{verbatim}
+
+\hypertarget{model-accuracy-1}{%
+\subsection{3. Model accuracy}\label{model-accuracy-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(predictions}\SpecialCharTok{$}\NormalTok{class}\SpecialCharTok{==}\NormalTok{test.transformed}\SpecialCharTok{$}\NormalTok{cluster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+Dilihat dari model akurasi dapat disimpulkan bahwa metode hierachical
+clustering dengan jarak euclidean + metode single linkage lebih akurat
+dibanding metode k-means.
+
+\#simpan kluster
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clusterSales }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(data, }\AttributeTok{Cluster =}\NormalTok{ km.res}\SpecialCharTok{$}\NormalTok{cluster)}
+\FunctionTok{head}\NormalTok{(clusterSales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Salegrow saleproft Newsale createst Mechtest absttest mathtest Cluster
+## 1     93.0      96.0    97.8        9       12        9       20       2
+## 2     88.8      91.8    96.8        7       10       10       15       2
+## 3     95.0     100.3    99.0        8       12        9       26       2
+## 4    101.3     103.8   106.8       13       14       12       29       1
+## 5    102.0     107.8   103.0       10       15       12       32       1
+## 6     95.8      97.5    99.3       10       14       11       21       2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{cutree}\NormalTok{(res.hc, }\AttributeTok{k=}\DecValTok{2}\NormalTok{)}
+\NormalTok{HierarchySales }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(data, }\AttributeTok{Group =} \FunctionTok{as.factor}\NormalTok{(group))}
+\FunctionTok{head}\NormalTok{(HierarchySales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Salegrow saleproft Newsale createst Mechtest absttest mathtest Group
+## 1     93.0      96.0    97.8        9       12        9       20     1
+## 2     88.8      91.8    96.8        7       10       10       15     1
+## 3     95.0     100.3    99.0        8       12        9       26     1
+## 4    101.3     103.8   106.8       13       14       12       29     1
+## 5    102.0     107.8   103.0       10       15       12       32     1
+## 6     95.8      97.5    99.3       10       14       11       21     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{HierarchySales }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Group) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise\_all}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 8
+##   Group Salegrow saleproft Newsale createst Mechtest absttest mathtest
+## * <fct>    <dbl>     <dbl>   <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
+## 1 1         98.7      106.    103.     11.1     14.1     10.5     29.3
+## 2 2        111.       122     115.     18       20       15       51
+\end{verbatim}
+
+\#\#iv. Buatkan analisis diskriminan untuk memperoleh: \#a. Prosentase
+ketepatan klasifikasi 50 slaesman ke hasil iii.a. maupun ke hasil iii.b.
+
+\#b. fungsi diskriminan berdasarkan hasil iii.a. maupun ke hasil iii.b.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lda}\NormalTok{(Cluster}\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data =}\NormalTok{ clusterSales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+## lda(Cluster ~ ., data = clusterSales)
+## 
+## Prior probabilities of groups:
+##    1    2 
+## 0.58 0.42 
+## 
+## Group means:
+##    Salegrow saleproft   Newsale createst Mechtest  absttest mathtest
+## 1 104.07931 113.80345 105.90690 12.82759 15.68966 11.413793 37.13793
+## 2  91.88095  96.70476  98.53333  9.00000 12.09524  9.380952 19.57143
+## 
+## Coefficients of linear discriminants:
+##                  LD1
+## Salegrow  -0.2355171
+## saleproft -0.2280978
+## Newsale   -0.2413533
+## createst   0.1330236
+## Mechtest   0.2773746
+## absttest   0.1525134
+## mathtest   0.1723275
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lda}\NormalTok{(Group}\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data =}\NormalTok{ HierarchySales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+## lda(Group ~ ., data = HierarchySales)
+## 
+## Prior probabilities of groups:
+##    1    2 
+## 0.98 0.02 
+## 
+## Group means:
+##    Salegrow saleproft  Newsale createst Mechtest absttest mathtest
+## 1  98.71429  106.3082 102.5551 11.08163 14.06122 10.46939 29.32653
+## 2 110.80000  122.0000 115.3000 18.00000 20.00000 15.00000 51.00000
+## 
+## Coefficients of linear discriminants:
+##                  LD1
+## Salegrow  -0.4387502
+## saleproft -0.3523443
+## Newsale   -0.1098142
+## createst   0.3371347
+## Mechtest   0.4602539
+## absttest   0.3701557
+## mathtest   0.5176323
+\end{verbatim}
+
+\end{document}

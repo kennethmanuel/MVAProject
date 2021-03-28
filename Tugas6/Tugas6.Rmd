@@ -5,49 +5,33 @@ date: "3/27/2021"
 output:
   html_document:
     df_print: paged
-  pdf_document: default
   word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{R library, include=FALSE}
+
+```{R message=FALSE, warning=FALSE, include=FALSE}
 library("tidyverse")
 library("readxl")
 library("NbClust")
 library("factoextra")
 library("MASS")
 library("caret")
-library("MASS")
 ```
 
 ```{r}
 data <- read_excel('Salespeople-data.xlsx')
 head(data)
 ```
-
-# Matriks korelasi
-
-```{r}
-res <- cor(data)
-round(res, 2)
-```
-
-# Eigenvalue
-
-```{r}
-ev <- eigen(res)
-e.values <- ev$values
-round(e.values, 2)
-```
-
 # Menentukan keputusan berapa kluster yang akan digunakan
 
 ```{r}
 fviz_nbclust(data, kmeans, method = "wss") +
-    geom_vline(xintercept = 4 , linetype = 2)+
+    geom_vline(xintercept = 2 , linetype = 2)+
   labs(subtitle = "Elbow method")
 
 fviz_nbclust(data, kmeans, method = "silhouette")+
@@ -57,14 +41,14 @@ fviz_nbclust(data, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
   labs(subtitle = "Gap statistic method")
 ```
 
-Baik metode elbow maupun sillhouete menyarankan untuk menggunakan 2 cluster sedangkan metode gap statistics menyarankan untuk menggunakan 4 cluster.
+Terlihat bahwa metode elbow dan metode silhouette menyarankan untuk menggunakan 2 cluster sedangkan gap statistics menyarankan untuk menggunakan 4 cluster.
 
-Karena dua metode yaitu sillhouete dan elbow menyarankan untuk menggunakan 2 cluster maka clustering akan dibagi menjadi **2 cluster**
+Karena dua metode yaitu silhouette dan elbow menyarankan untuk menggunakan 2 cluster maka clustering akan dibagi menjadi **2 cluster**
 
 # K-means clustering
 
 ```{r}
-km.res <- eclust(data, "kmeans", k = 4,
+km.res <- eclust(data, "kmeans", k = 2,
                  nstart = 25, graph = FALSE)
 # k-means group number of each observation
 km.res$cluster
@@ -75,16 +59,18 @@ fviz_cluster(km.res,  ellipse.type = "norm")
 #fviz_silhouette(km.res)
 ```
 
-# Hierachical clustering
+# Hierachical clustering dengan jarak euclidean dan metode single linkage
 
 ```{r}
-res.hc <- eclust(data, "hclust", k = 4,
-                method = "single", graph = FALSE) 
-res.hc$cluster
+# dissimilarity matrix
+res.dist <- dist(data, method = 'euclidean')
+res.hc <- hclust(d = res.dist, method = 'single')
+hc.cluster <- cutree(res.hc, k = 2)
+hc.cluster
 ```
 
 ```{r}
-fviz_dend(res.hc, rect = TRUE, show_labels = TRUE, cex = 0.5) 
+fviz_dend(res.hc, rect = TRUE, show_labels = TRUE, cex = 0.5, color_labels_by_k = TRUE) 
 #fviz_silhouette(res.hc)
 ```
 
@@ -92,10 +78,8 @@ fviz_dend(res.hc, rect = TRUE, show_labels = TRUE, cex = 0.5)
 
 ```{r}
 km.res$cluster
-res.hc$cluster
+hc.cluster
 ```
-
-Dari dapat dilihat bahwa sebenarnya kedua cluster memberikan kelas yang sama persis hanya saja hierachical clustering melabel kelas pertama k-means dengan kelas 1 dan kelas ke dua dengan kelas 2.
 
 Attaching cluster result label to data
 
@@ -103,7 +87,7 @@ Attaching cluster result label to data
 cluster.member1 <- data.frame(cluster = km.res$cluster)
 data.c1 <- cbind(data, cluster.member1)
 
-cluster.member2 <- data.frame(cluster = res.hc$cluster)
+cluster.member2 <- data.frame(cluster = hc.cluster)
 data.c2 <- cbind(data, cluster.member2)
 ```
 
@@ -169,8 +153,8 @@ Dengan mengasumsi bahwa masing - masing variabel berdistribusi normal univariate
 set.seed(123)
 training.samples <- data.c2$cluster %>%
   createDataPartition(p = 0.8, list = FALSE)
-train.data <- data.c1[training.samples, ]
-test.data <- data.c1[-training.samples, ]
+train.data <- data.c2[training.samples, ]
+test.data <- data.c2[-training.samples, ]
 ```
 
 ### Normalize data
@@ -205,7 +189,10 @@ names(predictions)
 mean(predictions$class==test.transformed$cluster)
 ```
 
-#simpan kluster
+Dilihat dari model akurasi dapat disimpulkan bahwa metode hierachical clustering dengan jarak euclidean + metode single linkage lebih akurat dibanding metode k-means. 
+
+\#simpan kluster
+
 ```{r}
 clusterSales <- cbind(data, Cluster = km.res$cluster)
 head(clusterSales)
@@ -217,11 +204,10 @@ HierarchySales %>%
   summarise_all("mean")
 ```
 
-##iv. Buatkan analisis diskriminan untuk memperoleh:
-#a. Prosentase ketepatan klasifikasi 50 slaesman ke hasil iii.a. maupun ke hasil iii.b.
+\#\#iv. Buatkan analisis diskriminan untuk memperoleh: \#a. Prosentase ketepatan klasifikasi 50 slaesman ke hasil iii.a. maupun ke hasil iii.b.
 
+\#b. fungsi diskriminan berdasarkan hasil iii.a. maupun ke hasil iii.b.
 
-#b. fungsi diskriminan berdasarkan hasil iii.a. maupun ke hasil iii.b.
 ```{r}
 lda(Cluster~., data = clusterSales)
 lda(Group~., data = HierarchySales)
