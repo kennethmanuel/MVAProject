@@ -1,6 +1,6 @@
 ---
 title: "Salespeople-data"
-author: "Kenneth Manuel"
+author: "Kenneth Manuel (160419041), Jehuda Rivaldo (160419133)"
 date: "3/27/2021"
 output:
   html_document:
