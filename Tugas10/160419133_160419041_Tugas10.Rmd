@@ -23,3 +23,11 @@ str(data)
 #ada 241 data dari client,	agemate,	info,	comp,	arith,	simil,	vocab,	digit,	pictcomp,	parang,	block,	object,	coding
 
 ```
+
+```{r}
+#buat matriks korelas dari data 
+data_matrix <- as.matrix(data)
+data_matrix_corelation <- cor(data_matrix)
+data_matrix_eigen <- eigen(data_matrix_corelation)
+data_matrix_vector <- data_matrix_eigen
+```

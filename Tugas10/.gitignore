@@ -1,0 +1,30 @@
+PCA 'COST'-'POWDER';
+   Coefficients c6-c9; 	# simpan eigen vector
+   Scores c10-c13; 		# simpan score PCA
+   Eigen c14; 		# simpan eigenvalue
+   GScree. 		# cetak scree plot
+
+copy c6-c9 m1		# buat matriks Eigen vector
+tran m1 m2		# buat transpose matriks Eigen vector
+mult m1 m2 m3		# membuktikan bhw transpose_eigenvector * eigenvector = identitas
+prin m3
+Name m4 "CORR1"		# buat matriks korelasi
+Correlation 'COST'-'POWDER' 'CORR1'.
+prin m4
+inve m4 m5
+prin m5
+
+copy c6 c7 m10 		# ambil eigenvector 2 component, lambda > 1.0
+copy c15 c16 m11		# buat matriks diagonal yg berisi eigenvalue berukuran  num_lambda > 1.0
+			# lalu lakukan proses akar pada semua elemen nya
+Let c17 = sqrt(c15)		# hasil proses akar simpan ke matriks
+Let c18 = sqrt(c16)
+copy c17 c18 m11
+
+mult m10 m11 m12		# proses menghitung Loading Factor
+prin m12
+
+Factor 'COST'-'POWDER';	# Cek hasil LOADING FACTOR-nya disini
+   NFactors 2;
+   VMax;
+   Correlation.
