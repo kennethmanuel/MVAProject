@@ -1,0 +1,25 @@
+---
+title: "Penentuan Faktor Pertumbuhan Anak"
+author: "Jehuda Rivaldo S. (160419133), Kenneth Manuel Lieyanto (160419041)"
+date: "5/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Library
+library(readxl)
+library(psych)
+```
+
+```{r}
+#Baca data 
+data <- read_excel("Tugas FA  - WiscsemData.xlsx")
+head(data)
+str(data)
+#ada 241 data dari client,	agemate,	info,	comp,	arith,	simil,	vocab,	digit,	pictcomp,	parang,	block,	object,	coding
+
+```
