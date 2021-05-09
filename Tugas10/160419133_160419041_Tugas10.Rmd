@@ -15,16 +15,13 @@ library(readxl)
 ```
 
 ```{r}
-#Baca data 
 data <- read_excel("Tugas FA  - WiscsemData.xlsx")
 head(data)
 str(data)
-#ada 241 data dari client,	agemate,	info,	comp,	arith,	simil,	vocab,	digit,	pictcomp,	parang,	block,	object,	coding
-
 ```
 
+Matrix eigen vector
 ```{r}
-#buat matriks eigen, vector dari data 
 data_matriks <- as.matrix(data)
 data_matriks_korelasi <- cor(data_matriks)
 data_matriks_eigen <- eigen(data_matriks_korelasi)
@@ -33,38 +30,39 @@ data_matriks_vektor_transpose <- t(data_matriks_vektor)
 data_matriks_vektor %*% data_matriks_vektor_transpose
 ```
 
+3 Sampel eigen vektor
 ```{r}
-#mengambil 3 sampel eigen vektor
 eigen_vektor <- data_matriks_vektor[,1:3]
 eigen_vektor
 ```
 
+Diagonal matrix
 ```{r}
-#membuat matriks diagonal
 matriks_diagonal <- data_matriks_eigen$values[1:3]
 matriks_diagonal_value <- diag(matriks_diagonal, 3,3)
 ```
 
+Loading factor
 ```{r}
-#membuat load faktor
 load_factor <- eigen_vektor %*% sqrt(matriks_diagonal_value)
 load_factor
 ```
 
+Matriks Invers
 ```{r}
-#membuat matriks invers
 data_matriks_korelasi_invers <- solve(data_matriks_korelasi)
 data_matriks_korelasi_invers
 ```
 
+Plot
 ```{r}
 load_factor_rotate <- varimax(load_factor)
 plot(load_factor_rotate$loadings[,1:2], type = "n")
 text(load_factor_rotate$loadings[,1:2], labels=names(data), cex = 1)
 ```
 
+Menghitung koefisien faktor
 ```{r}
-#menghitung koefisien faktor 
 koefisien_faktor <- data_matriks_korelasi_invers %*% load_factor_rotate$loadings
 koefisien_faktor
 ```
