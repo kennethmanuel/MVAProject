@@ -12,7 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #Library
 library(readxl)
-library(psych)
 ```
 
 ```{r}
@@ -55,14 +54,17 @@ load_factor
 ```{r}
 #membuat matriks invers
 data_matriks_korelasi_invers <- solve(data_matriks_korelasi)
+data_matriks_korelasi_invers
 ```
 
 ```{r}
 load_factor_rotate <- varimax(load_factor)
 plot(load_factor_rotate$loadings[,1:2], type = "n")
-#plot(load_factor_rotate$loadings[,1:2], labels=names(data), cex = 1)
+text(load_factor_rotate$loadings[,1:2], labels=names(data), cex = 1)
 ```
 
 ```{r}
-
+#menghitung koefisien faktor 
+koefisien_faktor <- data_matriks_korelasi_invers %*% load_factor_rotate$loadings
+koefisien_faktor
 ```
