@@ -1,0 +1,68 @@
+---
+title: "Penentuan Faktor Pertumbuhan Anak"
+author: "Jehuda Rivaldo S. (160419133), Kenneth Manuel Lieyanto (160419041)"
+date: "5/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Library
+library(readxl)
+```
+
+```{r}
+data <- read_excel("Tugas FA  - WiscsemData.xlsx")
+head(data)
+str(data)
+```
+
+Matrix eigen vector
+```{r}
+data_matriks <- as.matrix(data)
+data_matriks_korelasi <- cor(data_matriks)
+data_matriks_eigen <- eigen(data_matriks_korelasi)
+data_matriks_vektor <- data_matriks_eigen$vectors
+data_matriks_vektor_transpose <- t(data_matriks_vektor)
+data_matriks_vektor %*% data_matriks_vektor_transpose
+```
+
+3 Sampel eigen vektor
+```{r}
+eigen_vektor <- data_matriks_vektor[,1:3]
+eigen_vektor
+```
+
+Diagonal matrix
+```{r}
+matriks_diagonal <- data_matriks_eigen$values[1:3]
+matriks_diagonal_value <- diag(matriks_diagonal, 3,3)
+```
+
+Loading factor
+```{r}
+load_factor <- eigen_vektor %*% sqrt(matriks_diagonal_value)
+load_factor
+```
+
+Matriks Invers
+```{r}
+data_matriks_korelasi_invers <- solve(data_matriks_korelasi)
+data_matriks_korelasi_invers
+```
+
+Plot
+```{r}
+load_factor_rotate <- varimax(load_factor)
+plot(load_factor_rotate$loadings[,1:2], type = "n")
+text(load_factor_rotate$loadings[,1:2], labels=names(data), cex = 1)
+```
+
+Menghitung koefisien faktor
+```{r}
+koefisien_faktor <- data_matriks_korelasi_invers %*% load_factor_rotate$loadings
+koefisien_faktor
+```
