@@ -3,7 +3,6 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-
 ```{r}
 library(readxl)
 library(lavaan)
@@ -16,6 +15,7 @@ head(data)
 ```
 
 Model yang ditentukan
+
 ```{r}
 model <- '
 E1=~x11+x12+x13+x14
@@ -27,34 +27,41 @@ N2=~y21+y22
 '
 ```
 
-
 SEM analysis dari model diatas.
+
 ```{r}
+
 fit <- sem(model, data = data)
 summary(mfit, standardized=TRUE)
 ```
 
+Model Fit yang diminta dan summary
+
 ```{r}
+#Menampilkan Modifikasi yang dilakukan RStudio pada Model
 modindices(fit,sort=TRUE)
 ```
+
+Memeriksa data yang sudah distandarisasi
 
 ```{r}
 inspect(fit,what="std")
 ```
 
+Memeriksa data yang sudah distandarisasi
 
 ```{r}
 inspect(fit, what='r2')
 ```
-
 
 ```{r}
 fitmeasures(fit)
 ```
 
 Gambar model output.
+
 ```{r}
 semPaths(fit, what="std")
 ```
 
-
+Berikut adalah gambar jalur analisis SEM yang kami buat
