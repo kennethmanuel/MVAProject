@@ -1,6 +1,8 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r}
@@ -32,7 +34,7 @@ SEM analysis dari model diatas.
 ```{r}
 
 fit <- sem(model, data = data)
-summary(mfit, standardized=TRUE)
+summary(fit, standardized=TRUE)
 ```
 
 Model Fit yang diminta dan summary
